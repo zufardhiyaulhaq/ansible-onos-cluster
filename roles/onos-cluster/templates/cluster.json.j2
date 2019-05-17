@@ -1,0 +1,21 @@
+{
+  "name": "onos",
+  "node": {
+{% for node in onos %}
+    {%if inventory_hostname == node.hostname %}
+    "id": "{{ node.hostname }}",
+    "ip": "{{ node.address }}",
+    "port": 9876
+    {% endif %}
+{% endfor %}
+  },
+  "storage": [
+{% for node in atomix %}
+    {
+      "id": "{{ node.hostname }}",
+      "host": "{{ node.hostname }}",
+      "port": 9876
+    }{% if not loop.last %},{% endif %}
+{% endfor %}
+  ]
+}
