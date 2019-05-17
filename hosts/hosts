@@ -1,9 +1,9 @@
 [atomix]
-10.200.200.10
-10.200.200.11
-10.200.200.12
+zu-atomix1
+zu-atomix2
+zu-atomix3
 
 [onos]
-10.200.200.13
-10.200.200.14
-10.200.200.15
+zu-onos1
+zu-onos2
+zu-onos3
