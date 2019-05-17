@@ -26,6 +26,7 @@
 - name: create user sdn
   user:
     name: sdn
+    group: sdn
     system: yes
 
 - name: Download and extract ONOS
