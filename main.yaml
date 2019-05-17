@@ -1,0 +1,9 @@
+- name: Bootstraping Atomix
+  hosts: atomix
+  roles:
+  - atomix-cluster
+
+- name: Bootstraping ONOS
+  hosts: onos
+  roles:
+  - onos-cluster
