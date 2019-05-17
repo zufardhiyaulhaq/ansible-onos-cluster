@@ -48,6 +48,11 @@
     owner: sdn
     group: sdn
 
+- name: create onos directory
+  file:
+    path: /opt/onos/config
+    state: directory
+
 - name: Create onos configuration
   template:
     src: "cluster.json.j2"
