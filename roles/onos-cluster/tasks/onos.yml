@@ -28,18 +28,26 @@
     name: sdn
     system: yes
 
-- name: create onos directory
-  file:
-    path: /opt/onos
-    state: directory
-
 - name: Download and extract ONOS
   unarchive:
     src: http://repo1.maven.org/maven2/org/onosproject/onos-releases/{{ onos_version }}/onos-{{ onos_version }}.tar.gz
-    dest: /opt/onos/
+    dest: /opt/
     remote_src: yes
     owner: sdn
     group: sdn
+
+- name: stat onos directory
+  stat: 
+    path: /opt/onos-{{ onos_version }}
+  register: onos_stat
+
+- name: Move onos-{{ onos_version }} to onos
+  command: mv /opt/onos-{{ onos_version }} /opt/onos
+  when: onos_stat.stat.exists
+
+- name: Move onos-{{ onos_version }} to onos
+  command: chown -R sdn:sdn /opt/onos
+  when: onos_stat.stat.exists
 
 - name: Create onos configuration
   template:
