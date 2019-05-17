@@ -1,0 +1,59 @@
+---
+- name: Copy host resolver
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: Install software-properties-common
+  apt:
+    name:
+      - 'software-properties-common'
+      - 'curl'
+      - 'wget'
+      - 'nano'
+    update_cache: yes
+
+- name: Add Java repository
+  apt_repository:
+    repo: ppa:webupd8team/java
+
+- name: Install Java
+  debconf:
+    name: 'oracle-java8-installer'
+    question: 'shared/accepted-oracle-license-v1-1'
+    value: 'true'
+    vtype: 'select'
+
+- name: Install Java
+  apt:
+    name:
+      - 'oracle-java8-installer'
+      - 'ca-certificates'
+      - 'oracle-java8-set-default'
+    update_cache: yes
+
+- name: Download and extract atomix
+  unarchive:
+    src: https://oss.sonatype.org/content/repositories/releases/io/atomix/atomix-dist/{{ atomix-version }}/atomix-dist-{{ atomix-version }}.tar.gz
+    dest: /opt/atomix
+    remote_src: yes
+
+- name: Create atomix configuration
+  template:
+    src: "atomix.conf.j2"
+    dest: "/opt/atomix/conf/atomix.conf"
+
+- name: Create atomix service files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 644
+  with_items:
+    - { src: 'atomix.service.j2', dest: '/etc/systemd/system/atomix.service' }
+
+- name: Start atomix
+  systemd:
+    name: atomix
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
