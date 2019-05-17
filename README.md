@@ -1,4 +1,4 @@
-# Kubernetes the easy way
+# Ansible ONOS Cluster
 Ansible template to create ONOS Cluster
 
 ### Testing in
