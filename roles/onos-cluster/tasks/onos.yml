@@ -67,12 +67,14 @@
     remote_src: yes
     src: /opt/onos/init/onos.initd
     dest: /etc/init.d/onos
+    mode: 755
 
 - name: copy files
   copy:
     remote_src: yes
     src: /opt/onos/init/onos.service
     dest: /etc/systemd/system/
+    mode: 755
 
 - name: Start ONOS
   systemd:
