@@ -1,6 +1,6 @@
 ansible_python_interpreter: /usr/bin/python3
-atomix-version: 3.1.0-beta2
-onos-version: 2.0.0
+atomix_version: 3.1.0-beta2
+onos_version: 2.0.0
 
 atomix:
 - hostname: zu-atomix1

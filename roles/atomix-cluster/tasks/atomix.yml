@@ -25,7 +25,7 @@
 
 - name: Download and extract atomix
   unarchive:
-    src: https://oss.sonatype.org/content/repositories/releases/io/atomix/atomix-dist/{{ atomix-version }}/atomix-dist-{{ atomix-version }}.tar.gz
+    src: https://oss.sonatype.org/content/repositories/releases/io/atomix/atomix-dist/{{ atomix_version }}/atomix-dist-{{ atomix_version }}.tar.gz
     dest: /opt/atomix
     remote_src: yes
 

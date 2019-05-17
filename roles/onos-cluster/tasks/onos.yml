@@ -30,7 +30,7 @@
 
 - name: Download and extract ONOS
   unarchive:
-    src: http://repo1.maven.org/maven2/org/onosproject/onos-releases/{{ onos-version }}/onos-{{ onos-version }}.tar.gz
+    src: http://repo1.maven.org/maven2/org/onosproject/onos-releases/{{ onos_version }}/onos-{{ onos_version }}.tar.gz
     dest: /opt/onos/
     remote_src: yes
     owner: sdn
