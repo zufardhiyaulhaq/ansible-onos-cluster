@@ -6,12 +6,14 @@
 
 - name: Install software-properties-common
   apt:
-    name:
-      - 'software-properties-common'
-      - 'curl'
-      - 'wget'
-      - 'nano'
+    name: "{{ packages }}"
     update_cache: yes
+  vars:
+    packages:
+    - software-properties-common
+    - curl
+    - wget
+    - nano
 
 - name: Add Java repository
   apt_repository:
