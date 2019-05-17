@@ -23,6 +23,11 @@
     packages:
     - openjdk-8-jdk
 
+- name: create atomix directory
+  file:
+    path: /opt/atomix
+    state: directory
+
 - name: Download and extract atomix
   unarchive:
     src: https://oss.sonatype.org/content/repositories/releases/io/atomix/atomix-dist/{{ atomix_version }}/atomix-dist-{{ atomix_version }}.tar.gz

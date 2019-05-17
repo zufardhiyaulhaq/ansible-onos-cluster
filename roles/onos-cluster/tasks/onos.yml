@@ -28,6 +28,11 @@
     name: sdn
     system: yes
 
+- name: create onos directory
+  file:
+    path: /opt/onos
+    state: directory
+
 - name: Download and extract ONOS
   unarchive:
     src: http://repo1.maven.org/maven2/org/onosproject/onos-releases/{{ onos_version }}/onos-{{ onos_version }}.tar.gz
@@ -36,14 +41,14 @@
     owner: sdn
     group: sdn
 
-- name: Create atomix configuration
+- name: Create onos configuration
   template:
     src: "options.j2"
     dest: "/opt/onos/options"
     owner: sdn
     group: sdn
 
-- name: Create atomix configuration
+- name: Create onos configuration
   template:
     src: "cluster.json.j2"
     dest: "/opt/onos/config/cluster.json"
