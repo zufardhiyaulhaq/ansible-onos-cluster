@@ -45,30 +45,24 @@
   command: mv /opt/onos-{{ onos_version }} /opt/onos
   when: onos_stat.stat.exists
 
-- name: Move onos-{{ onos_version }} to onos
-  command: chown -R sdn:sdn /opt/onos
-  when: onos_stat.stat.exists
-
 - name: Create onos configuration
   template:
     src: "options.j2"
     dest: "/opt/onos/options"
-    owner: sdn
-    group: sdn
 
 - name: create onos directory
   file:
     path: /opt/onos/config
     state: directory
-    owner: sdn
-    group: sdn
 
 - name: Create onos configuration
   template:
     src: "cluster.json.j2"
     dest: "/opt/onos/config/cluster.json"
-    owner: sdn
-    group: sdn
+
+- name: chown onos directory
+  command: chown -R sdn:sdn /opt/onos
+  when: onos_stat.stat.exists
 
 - name: copy files
   copy:
@@ -85,6 +79,6 @@
 - name: Start ONOS
   systemd:
     name: onos
-    state: restarted
+    state: started
     daemon_reload: yes
     enabled: yes
