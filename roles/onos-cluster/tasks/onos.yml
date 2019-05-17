@@ -60,6 +60,8 @@
   file:
     path: /opt/onos/config
     state: directory
+    owner: sdn
+    group: sdn
 
 - name: Create onos configuration
   template:
