@@ -4,7 +4,8 @@ Ansible template to create ONOS Cluster
 ### Testing in
 * 3 Atomix node
 * 3 ONOS node
-* Ubuntu 16.04
+* Ubuntu 16.04 (master branch)
+* openSUSE Leap 15.1 (opensuse branch)
 
 ## Step
 * Prepare deployer nodes (ansible is installed in here)
