@@ -4,6 +4,12 @@
     src: hosts.j2
     dest: /etc/hosts
 
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
 - name: Install package
   zypper:
     name: "{{ packages }}"
