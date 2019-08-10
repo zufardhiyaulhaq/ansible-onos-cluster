@@ -4,24 +4,23 @@
     src: hosts.j2
     dest: /etc/hosts
 
-- name: Install software-properties-common
-  apt:
+- name: Install package
+  zypper:
     name: "{{ packages }}"
-    update_cache: yes
+    state: present
   vars:
     packages:
-    - software-properties-common
     - curl
     - wget
     - nano
 
 - name: Install Java
-  apt:
+  zypper:
     name: "{{ packages }}"
-    update_cache: yes
+    state: present
   vars:
     packages:
-    - openjdk-8-jdk
+    - java-1_8_0-openjdk
 
 - name: create atomix directory
   file:
