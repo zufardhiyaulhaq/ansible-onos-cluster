@@ -18,6 +18,7 @@ sudo apt install ansible
 ssh-copy-id root@atomix
 ssh-copy-id root@onos
 ```
+* Configure Ansible to disable host key checking
 * Clone this repository
 ```
 git clone https://github.com/zufardhiyaulhaq/ansible-onos-cluster.git

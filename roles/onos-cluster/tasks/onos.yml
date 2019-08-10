@@ -13,6 +13,8 @@
     - curl
     - wget
     - nano
+    - net-tools
+    - nmap
 
 - name: Install Java
   zypper:
