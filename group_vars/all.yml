@@ -4,16 +4,16 @@ onos_version: 2.0.0
 
 atomix:
 - hostname: zu-atomix1
-  address: 10.100.100.10
+  address: 10.100.100.21
 - hostname: zu-atomix2
-  address: 10.100.100.11
+  address: 10.100.100.22
 - hostname: zu-atomix3
-  address: 10.100.100.12
+  address: 10.100.100.23
 
 onos:
 - hostname: zu-onos1
-  address: 10.100.100.13
+  address: 10.100.100.24
 - hostname: zu-onos2
-  address: 10.100.100.14
+  address: 10.100.100.25
 - hostname: zu-onos3
-  address: 10.100.100.15
+  address: 10.100.100.26
