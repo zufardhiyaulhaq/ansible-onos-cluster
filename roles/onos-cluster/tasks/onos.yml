@@ -20,6 +20,7 @@
     - wget
     - nano
     - net-tools
+    - net-tools-deprecated
     - nmap
     - insserv-compat
 
