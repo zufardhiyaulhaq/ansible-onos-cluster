@@ -32,7 +32,7 @@
     - java-1_8_0-openjdk
 
 - name: create user sdn
-  shell: useradd sdn --system --user-group
+  shell: useradd sdn --system --user-group --create-home
 
 - name: Download and extract ONOS
   unarchive:
