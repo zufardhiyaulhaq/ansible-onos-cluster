@@ -1,0 +1,64 @@
+from mininet.cli import CLI
+from mininet.log import setLogLevel
+from mininet.net import Mininet
+from mininet.topo import Topo
+from mininet.node import RemoteController, OVSSwitch
+
+class TowerTopo(Topo):
+    """Create a tower topology"""
+
+    def build(self,k=4,h=6):
+        spines = []
+        leaves = []
+        hosts = []
+
+        # Create the two spine switches
+        spines.append(self.addSwitch('s1'))
+        spines.append(self.addSwitch('s2'))
+        
+        # Now create the leaf switches, their hosts and connect them together
+        i = 1
+        c = 0
+        while i <= k:
+            leaves.append(self.addSwitch('s1%d' % i))
+            for spine in spines:
+                self.addLink(leaves[i-1], spine)
+
+            j = 1
+            while j <= h:
+                hosts.append(self.addHost('h%d%d' % (i, j)))
+                self.addLink(hosts[c], leaves[i-1])
+                j+=1
+                c+=1
+
+            i+=1
+
+def runTopo():
+ 
+    # Create an instance of our topology
+    topo = TowerTopo()
+ 
+    # Create a network based on the topology using OVS and controlled by
+    # a remote controller.
+    net = Mininet(
+        topo=topo,
+        switch=OVSSwitch,
+        autoSetMacs=True )
+
+{% for node in onos %}
+    net.addController('{{ node.hostname }}', controller=RemoteController, ip="{{ node.address }}", port=6633)
+{% endfor %}    
+
+    # Actually start the network
+    net.start()
+ 
+    # Drop the user in to a CLI so user can run commands.
+    CLI( net )
+ 
+    # After the user exits the CLI, shutdown the network.
+    net.stop()
+ 
+if __name__ == '__main__':
+    # This runs if this file is executed directly
+    setLogLevel( 'info' )
+    runTopo()

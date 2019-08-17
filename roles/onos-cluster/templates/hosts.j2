@@ -29,3 +29,7 @@ ff02::3         ipv6-allhosts
 {% for node in onos %}
 {{ node.address }} {{ node.hostname }}
 {% endfor %}
+
+{% for node in mininet %}
+{{ node.address }} {{ node.hostname }}
+{% endfor %}

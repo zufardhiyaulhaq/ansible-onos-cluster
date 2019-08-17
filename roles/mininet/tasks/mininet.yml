@@ -1,0 +1,29 @@
+---
+- name: Copy host resolver
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Install package mininet
+  zypper:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - mininet
+    - net-tools
+    - net-tools-deprecated
+
+- name: Create mininet python files
+  template:
+    src: "mininet.py.j2"
+    dest: "/root/mininet.py"
+
+- name: Run mininet in Screen
+  shell: screen -S mininet -d -m bash -c "python /root/mininet.py"

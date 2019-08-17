@@ -7,3 +7,8 @@
   hosts: onos
   roles:
   - onos-cluster
+
+- name: Deploy mininet
+  hosts: mininet
+  roles:
+  - mininet
