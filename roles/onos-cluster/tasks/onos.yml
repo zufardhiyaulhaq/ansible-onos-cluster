@@ -21,6 +21,7 @@
     - nano
     - net-tools
     - nmap
+    - insserv-compat
 
 - name: Install Java
   zypper:
