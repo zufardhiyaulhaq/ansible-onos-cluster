@@ -23,7 +23,7 @@
 - name: Create mininet python files
   template:
     src: "mininet.py.j2"
-    dest: "/root/mininet.py"
+    dest: "/root/topology_test.py"
 
 - name: Run mininet in Screen
-  shell: screen -S mininet -d -m bash -c "python /root/mininet.py"
+  shell: screen -S mininet -d -m bash -c "python /root/topology_test.py"
