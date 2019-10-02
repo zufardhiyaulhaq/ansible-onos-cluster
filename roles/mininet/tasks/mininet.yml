@@ -25,5 +25,11 @@
     src: "mininet.py.j2"
     dest: "/root/topology_test.py"
 
+- name: Start openvswitch
+  systemd:
+    name: openvswitch
+    state: started
+    enabled: yes
+    
 - name: Run mininet in Screen
   shell: screen -S mininet -d -m bash -c "python /root/topology_test.py"
